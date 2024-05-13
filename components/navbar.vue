@@ -20,8 +20,9 @@ onMounted(fetchCategories);
 </script>
 
 <template>
-  <div class="py-8">
-    <header class="bg-white grid grid-cols-5">
+  <div class="bg-white py-8">
+
+    <header class="grid grid-cols-5">
     
       <!--Logo-->
       <div class="col-start-1 col-end-3">
@@ -33,20 +34,21 @@ onMounted(fetchCategories);
 
       <!--Category Section-->
       <div class="col-start-3 col-end-6">
-        <ul class="space-x-6 flex flex-row gap-5">
-          <li>HOME</li>
+        <ul class="flex flex-row text-xs font-bold space-x-3">
+
           <li>NEW ARRIVALS</li>
+
           <Navbarcard
             v-for="category in categories"
             :key="category"
             :category="category"
           />
 
-          <li>SALE</li>
           <li>GIFT VOUCHERS</li>
         </ul>
       </div>
     </header>
+
   </div>
 </template>
 

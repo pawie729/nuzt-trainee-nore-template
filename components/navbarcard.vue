@@ -13,7 +13,7 @@ const categorypath = computed(() => {
 </script>
 
 <template>
-  <NuxtLink :to="categorypath.path" class="flex items-center tracking-wider space-x-2 text-sm">
+  <NuxtLink :to="categorypath.path" class="flex items-center">
     <p>{{ props.category }}</p>
   </NuxtLink>
 </template>
