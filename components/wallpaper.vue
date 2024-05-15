@@ -1,13 +1,55 @@
 <script setup lang="ts">
+
+type ImageData = {
+  img: string;
+  data: { key: string; value: string }[];
+};
+
+const desktopImages = ref<ImageData[]>([]);
+const mobileImages = ref<ImageData[]>([]);
+
+const fetchImages = async () => {
+  try {
+    const response = await fetch('https://gcp-store-shared1.greencloudpos.com/norareedfashion.com/get_settings', {
+
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+          type: 'fileSectons',
+
+      }),
+
+    });
+
+    const data = await response.json();
+
+    const mainSliders = data.find((item: { value: string }) => item.value === 'Home Page - Main Sliders');
+    if (mainSliders) {
+      mainSliders.images.forEach((image: ImageData) => {
+    if (image.data.some((item) => item.value === 'Desktop')) {
+      desktopImages.value.push(image);
+    }
+  });
+    }
+
+  } catch (error) {
+
+    console.error('Error fetching images:', error);
+  }
+}
+
+onMounted(fetchImages);
+
 </script>
 
 <template>
   <div>
-    <nav class="aspect-square w-full w-max-[100px] h-[550px] relative">
-            <img alt="wallpaper" 
-            src="https://cdn.greencloudpos.com/norareedfashion.com/Home%20Page%20-%20Main%20Sliders/desktop-img4-1704437688230.jpeg?width=1600"
-            class="absolute top-0 left-0 w-full h-[550px] object-cover">
-        </nav> 
+    <div class="desktop-slideshow">
+      <img v-for="(image, index) in desktopImages" :key="`desktop-${index}`" :src="image.img">
+    </div>
   </div>
 </template>
 
