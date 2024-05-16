@@ -33,11 +33,11 @@ const props = defineProps({
 
       <div class="flex space-x-3">
         <p>{{ price }}</p>
-        <p class="text-neutral-500 line-through">{{ discount }}</p>
+        <p v-if="props.discount" class="text-gray-500 line-through">{{ discount }}</p>
       </div>
       
       <div class="flex space-x-3">
-        <p class="font-semibold text-neutral-400">{{ instl }}</p>
+        <p class="font-semibold text-gray-400">{{ instl }}</p>
         <img class=" w-[50px]" alt="mintpay"
         src="https://greencoding.b-cdn.net/norareedfashion.com/front-end-asseta/mp.svg">
       </div>

@@ -7,7 +7,7 @@ const props = defineProps<{
     parent_id: string;
     img1: string;
     img2: string;
-    children: any[]; // Adjust the type of children as needed
+    children: any[];
     order_by: number;
     link: string;
   };
@@ -16,7 +16,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <NuxtLink :to="category.link" class="flex items-center">
+  <NuxtLink :to="category.link" class="flex">
     <p>{{ category.name }}</p>
   </NuxtLink>
 </template>

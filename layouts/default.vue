@@ -2,15 +2,21 @@
 
 </script> 
 
-<template class="container-md DefalutLayout">
+<template>
   <div>
     <topheader/>
     <navbar/>
 
     <nuxt-page/>
+
+    <page-footer/>
+
+  
+
+
     
-    <midfooter/>
-    <bottomfooter/>
+    
+
     
   </div>
 </template>

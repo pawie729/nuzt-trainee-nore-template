@@ -1,17 +1,30 @@
 <script setup lang="ts">
 
+
 type Product = {
   id: number;
   sku: string;
   PRICE: number;
-  DISCOUNT: number;
+  DISCOUNT?: number;
   master_title: string;
   img: string;
+  img2: string;
 };
+
+const props = defineProps({
+  title: {
+    type: String,
+    required: true,
+  },
+  directedLink: {
+    type: String,
+    required: true,
+  },
+});
 
 const products = ref<Product[]>([]);
 
-const fetchproducts = async () =>{
+const fetchProducts = async () =>{
   try{
     const response = await fetch('https://gcp-store-shared1.greencloudpos.com/norareedfashion.com/store_data',{
 
@@ -31,7 +44,7 @@ const fetchproducts = async () =>{
         order: 'NEWEST',
         p: 1,
         size: 8,
-        type: 'hot_offer',
+        type: props.directedLink,
       }),
 
     });
@@ -61,23 +74,37 @@ const fetchproducts = async () =>{
   return products;
 }
 
-onMounted(fetchproducts);
+onMounted(fetchProducts);
 
 </script>
 
 <template>
-  <div class="bg-white py-12 px-3">
-    <div class="grid grid-cols-4 gap-y-7">
+  <div class="bg-white lg:px-3 md:px-32 px-16">
+
+    <div class="bg-white py-7 flex justify-center border-y-[1px]">
+      <p class="font-bold lg:text-5xl text-2xl">{{ title }}</p>
+
+    </div>
+
+    <div class="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 py-12 gap-y-7 ">
       <Productcard 
         v-for="product in products"
         :key="product.id"
         :src="product.img"
         :name="product.master_title"
         :price="`LKR ${product.PRICE}.00`"
-        :discount="`LKR ${(product.PRICE-product.DISCOUNT)}.00`"
-        :instl="`LKR ${(product.PRICE/3).toFixed(2)} x 3 with`"
-    />
+        :discount="props.directedLink === 'hot_offer' && product.DISCOUNT ? `LKR ${(product.PRICE - product.DISCOUNT).toFixed(2)}.00` : ''"
+        :instl="`LKR ${(product.PRICE/3).toFixed(2)} x 3 with`"/>
     </div>
+
+    <div class="bg-white pb-12 px-3 flex justify-end">
+
+      <button class="bg-black py-3 px-12">
+        <p class="text-white text-xs font-semibold">View All</p>
+      </button>
+
+    </div>
+
   </div>
 </template>
 

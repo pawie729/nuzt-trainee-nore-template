@@ -1,22 +1,17 @@
 <script setup lang="ts">
+
 useSeoMeta({
-  title: 'Dilfer Clothing | Home',
+  title: 'Buy Best Women Cloths by Norareed',
 })
 
 </script>
 
 <template>
-  <div class="IndexPage">
+  <div>
     <Wallpaper/>
-    <Titlecard titlename="NEW ARRIVALS"/>
-    <NewarrivalsSection/>
-    <Viewallbutton/>
-    <Titlecard titlename="BEST OUT SELLERS"/>
-    <BestsellersSection/>
-    <Viewallbutton/>
-    <Titlecard titlename="CYBER SAVINGS"/>
-    <CybersavingsSection/>
-    <Viewallbutton/>
+    <ProductsSection title="NEW ARRIVALS" directedLink="new_arrivals"/>
+    <ProductsSection title="BEST OUT SELLERS" directedLink="trends"/>
+    <ProductsSection title="CYBER SAVINGS" directedLink="hot_offer"/>
     <Igbanner/>
   </div>
 </template>

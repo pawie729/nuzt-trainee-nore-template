@@ -15,10 +15,9 @@ interface Category {
 
 
 // Define a reactive object to hold the category tree
-const variables = reactive<{ categories: Category[]}> ({
-  categories: [],
+const variables = reactive<{ categories: Category[] }>({
+  categories: []
 });
-
 
 // Function to fetch categories from the API and organize them into a category tree
 const get_categories = async () => {
@@ -89,77 +88,68 @@ const get_categories = async () => {
     }
 };
 
-const isScrolled = ref(false);
-const isHoveredOn = ref(false);
-const selectedCategory = ref<Category | null>(null);
+// Call get_categories function on component mount
+onMounted(get_categories);
 
-const handleScroll = () => {
-  isScrolled.value = window.scrollY > 0;
-};
-
-const toggleDropdown = (category: Category) => {
-  isHoveredOn.value = true;
-  selectedCategory.value = category;
-};
-
-const toggleDropdownOff = () => {
-  isHoveredOn.value = false;
-  selectedCategory.value = null;
-};
-
-onMounted(() => {
-  get_categories();
-  window.addEventListener('scroll', handleScroll);
-});
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll);
-});
-
-console.log(selectedCategory.value)
-
+const emit = defineEmits(['close']);
 
 </script>
 
 <template>
-  <nav :class="[`px-3 py-4 hidden lg:block bg-white sticky top-0 left-0 z-40 border-b-[1px] border-gray-100`, isScrolled ? 'shadow-md' : ' shadow-none']">
+  <div class="flex fixed lg:hidden inset-0 z-50 h-full w-full opacity-100 pointer-events-auto">
 
-    <div class="grid grid-cols-5 items-center">
+    <div class="absolute inset-0 bg-black bg-opacity-75 h-full w-ful opacity-100 pointer-events-auto" @click="emit('close')"></div>
 
+    <nav class="absolute top-0 bg-white h-full w-full flex flex-col max-w-md left-0 delay-300 duration-300">
+    
       <!--Logo-->
-      <div class="col-start-1 col-end-3">
+      <div class="pr-3 border-b flex items-center justify-between h-16">
 
-        <NuxtLink to="/">
-          <img alt="site-logo" class="h-12" src="../public/vectors/brand-logo.svg">
-        </NuxtLink>
+          <NuxtLink to="/">
+            <img alt="site-logo"
+            class="h-8 px-3"
+            src="../public/vectors/brand-logo.svg">
+          </NuxtLink>
+
+          <img alt="cross-icon"
+            class="h-8"
+            src="../public/vectors/cross-icon.svg"
+            @click="emit('close')">  
 
       </div>
 
       <!--Category Section-->
-      <div class="col-start-3 col-end-6">
+      <div class="flex-grow mt-6 px-3 overflow-y-auto">
 
-        <ul class="flex flex-row text-xs font-bold space-x-3 items-center text-center">
+        <ul class="flex flex-col space-y-4 list-inside font-bold text-xs tracking-wide">
 
-          <li>NEW ARRIVALS</li>
+          <li class="border-b pb-4 px-4">HOME</li>
+
+          <li class="border-b pb-4 px-4">NEW ARRIVALS</li>
+
           <Navbarcard
             v-for="category in variables.categories"
+            class="border-b pb-4 px-4"
             :key="category.id"
             :category="category"
-            @mouseenter="toggleDropdown(category)"
-            @mouseleave="toggleDropdownOff"
-            
           />
-          <li>GIFT VOUCHERS</li>
+
+          <li class="border-b pb-4 px-4">GIFT VOUCHERS</li>
 
         </ul>
-
       </div>
-    </div>
+    </nav>
 
-    <Dropdown v-if="isHoveredOn" :selectedCategory="selectedCategory" />
-  </nav>
+  </div>
 </template>
 
-<style>
+<style scoped>
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
 
 </style>
