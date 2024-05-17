@@ -140,7 +140,14 @@ console.log(selectedCategory.value)
 
         <ul class="flex flex-row text-xs font-bold space-x-3 items-center text-center">
 
-          <li>NEW ARRIVALS</li>
+          <li>
+            <NuxtLink to="/">HOME</NuxtLink>
+          </li>
+
+          <li>
+            <NuxtLink to="/collections/new-arrivals/">NEW ARRIVALS</NuxtLink>
+          </li>
+
           <Navbarcard
             v-for="category in variables.categories"
             :key="category.id"
@@ -149,7 +156,10 @@ console.log(selectedCategory.value)
             @mouseleave="toggleDropdownOff"
             
           />
-          <li>GIFT VOUCHERS</li>
+
+          <li>
+            <NuxtLink to="/collections/Offers/">SALE</NuxtLink>
+          </li>
 
         </ul>
 
@@ -157,6 +167,9 @@ console.log(selectedCategory.value)
     </div>
 
     <Dropdown v-if="isHoveredOn" :selectedCategory="selectedCategory" />
+
+
+    
   </nav>
 </template>
 

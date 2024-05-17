@@ -123,9 +123,13 @@ const emit = defineEmits(['close']);
 
         <ul class="flex flex-col space-y-4 list-inside font-bold text-xs tracking-wide">
 
-          <li class="border-b pb-4 px-4">HOME</li>
+          <li class="border-b pb-4 px-4">
+            <NuxtLink to="/">HOME</NuxtLink>
+          </li>
 
-          <li class="border-b pb-4 px-4">NEW ARRIVALS</li>
+          <li class="border-b pb-4 px-4">
+            <NuxtLink to="/collections/new-arrivals">NEW ARRIVALS</NuxtLink>
+          </li>
 
           <Navbarcard
             v-for="category in variables.categories"
@@ -134,7 +138,9 @@ const emit = defineEmits(['close']);
             :category="category"
           />
 
-          <li class="border-b pb-4 px-4">GIFT VOUCHERS</li>
+          <li class="border-b pb-4 px-4">
+            <NuxtLink to="/collections/Offers">SALE</NuxtLink>
+          </li>
 
         </ul>
       </div>
@@ -145,11 +151,5 @@ const emit = defineEmits(['close']);
 
 <style scoped>
 
-.sticky {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  z-index: 50;
-}
 
 </style>

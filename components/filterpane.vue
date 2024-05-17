@@ -1,0 +1,95 @@
+<script setup lang="ts">
+
+
+const emit = defineEmits(['close']);
+
+</script>
+
+<template>
+  <div class="fixed inset-0 h-full w-full z-50 duration-300 opacity-100 pointer-events-auto">
+
+    <div 
+      class="absolute bg-black inset-0 h-full w-full bg-opacity-40 backdrop-blur-md  duration-300 opacity-100 pointer-events-auto"
+      @click="emit('close')">
+
+    </div>
+
+    <div class="absolute bg-white top-0 right-0 h-full w-full max-w-lg delay-300 duration-300 overflow-x-hidden" >
+
+      <div class="flex p-3 justify-between items-center text-sm font-semibold border-b-[1px]">
+
+        <p>Filter</p>
+
+        <img alt="cross-icon"
+            class="h-8"
+            src="../public/vectors/cross-icon.svg"
+            @click="emit('close')">  
+        
+
+      </div>
+
+      <div class="flex-grow overflow-y-auto overflow-x-hidden">
+
+        <div class="mb-10 mt-4 px-3">
+          
+          <div class="flex items-center mb-4 space-x-3 justify-between">
+          
+          <p class="text-xs font-semibold uppercase"> Categories </p>
+          </div>
+          
+        
+        
+          <div class="grid grid-cols-2 gap-2 ml-4 mt-6 text-sm font-semibold text-center hover:text-white">
+            
+            <NuxtLink 
+              to="/store/DRESSES/" class="duration-300 hover:bg-black   py-2 border border-gray-100">
+              Dresses
+            </NuxtLink>
+            
+            <NuxtLink 
+              to="/store/SKIRTS/" 
+              class="duration-300 hover:bg-black   py-2 border border-gray-100">
+              Skirts
+            </NuxtLink>
+            
+            <NuxtLink  
+              to="/store/BLOUSES/"     class="duration-300 hover:bg-black   py-2 border border-gray-100">
+              Blouses
+            </NuxtLink>
+            
+            <NuxtLink 
+              to="/store/JUMPSUITS-&-ROMPERS/" class="duration-300 hover:bg-black   py-2 border border-gray-100">
+              Jumsuits & Rompers
+            </NuxtLink>
+            
+            <NuxtLink 
+              to="/store/PANTS-&-SHORTS/" class="duration-300 hover:bg-black   py-2 border border-gray-100">
+              Pants & Shorts
+            </NuxtLink>
+            
+            <NuxtLink 
+              to="/store/TEE-SHIRTS/" class="duration-300 hover:bg-black   py-2 border border-gray-100">
+              Tee Shirts
+            </NuxtLink>
+
+          </div>
+
+        </div>
+        
+
+      </div>
+
+      <div class="flex p-3 border-t-[1px] justify-center">
+      <button class="flex-grow p-3 bg-black text-white text-xs font-semibold active:bg-white tracking-wider">Clear All Filters</button>
+      </div>
+
+    </div>
+
+     
+  </div>
+</template>
+
+<style scoped>
+
+
+</style>

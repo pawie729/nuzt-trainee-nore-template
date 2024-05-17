@@ -1,5 +1,6 @@
 <script setup lang="ts">
 
+
 interface Category {
   name: string;
   id: string;
@@ -45,7 +46,12 @@ const closeDropdown = () => {
     </ul>
 
   </div>
+
+    
 </template>
 
 <style scoped>
+
+
+
 </style>

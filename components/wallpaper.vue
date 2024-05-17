@@ -37,9 +37,7 @@ const fetchImages = async () => {
         if (image.data.some((item) => item.value === 'Desktop')) {
           desktopImages.value.push(image);
 
-        } else 
-
-        if (image.data.some((item) => item.value === 'Mobile')) {
+        } else if (image.data.some((item) => item.value === 'Mobile')) {
           mobileImages.value.push(image);
         }
       });
@@ -60,8 +58,10 @@ const nextImage = () => {
 
 onMounted(async () => {
   await fetchImages();
-  setInterval(nextImage, 5000); // Change image every 5 seconds
+  setInterval(nextImage, 5000); 
 });
+
+console.log(fetchImages)
 
 </script>
 

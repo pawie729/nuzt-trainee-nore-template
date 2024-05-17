@@ -79,7 +79,7 @@ onMounted(fetchProducts);
 </script>
 
 <template>
-  <div class="bg-white lg:px-3 md:px-32 px-16">
+  <div class="bg-white lg:px-3">
 
     <div class="bg-white py-7 flex justify-center border-y-[1px]">
       <p class="font-bold lg:text-5xl text-2xl">{{ title }}</p>
