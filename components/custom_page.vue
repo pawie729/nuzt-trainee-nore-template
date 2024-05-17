@@ -13,17 +13,7 @@ const props = defineProps<{
 
 const products = ref<any[]>([]);
 
-const fetchProducts = async (type: string) => {
-  const payload = {
-    p: 1,
-    size: 24,
-    order: "NEWEST",
-    maxprice: 1000000,
-    minprice: 0,
-    brand: "",
-    is_master: true,
-    type: type,
-  };
+const fetchProducts = async () => {
 
   try {
     const response = await fetch('https://gcp-store-shared1.greencloudpos.com/norareedfashion.com/store_data', {
@@ -32,7 +22,17 @@ const fetchProducts = async (type: string) => {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify({
+        p: 1,
+        size: 24,
+        order: "NEWEST",
+        maxprice: 1000000,
+        minprice: 0,
+        brand: "",
+        is_master: true,
+        type: props.type,
+      }),
+
     });
 
     const data = await response.json();    
@@ -55,21 +55,10 @@ const fetchProducts = async (type: string) => {
   } catch (error) {
     console.error('Error fetching products:', error);
   }
+  return products;
 };
 
-
-
-
-
-watch(
-  () => props.type,
-  (newType) => {
-    if (newType) {
-      fetchProducts(newType);
-    }
-  },
-  { immediate: true }
-);
+onMounted(fetchProducts);
 
 
 const isFilterOn = ref(false);
