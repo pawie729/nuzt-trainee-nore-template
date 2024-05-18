@@ -52,8 +52,8 @@ const fetchImages = async () => {
 onMounted(fetchImages);
 
 const nextImage = () => {
-  currentDesktopIndex.value = (currentDesktopIndex.value + 1) % desktopImages.value.length;
-  currentMobileIndex.value = (currentMobileIndex.value + 1) % mobileImages.value.length;
+  currentDesktopIndex.value = (currentDesktopIndex.value + 1) % desktopImages.length;
+  currentMobileIndex.value = (currentMobileIndex.value + 1) % mobileImages.length;
 };
 
 onMounted(async () => {

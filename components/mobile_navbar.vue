@@ -136,6 +136,8 @@ const emit = defineEmits(['close']);
             class="border-b pb-4 px-4"
             :key="category.id"
             :category="category"
+            selectedCategory=" "
+            
           />
 
           <li class="border-b pb-4 px-4">

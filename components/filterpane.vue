@@ -42,33 +42,33 @@ const emit = defineEmits(['close']);
           <div class="grid grid-cols-2 gap-2 ml-4 mt-6 text-sm font-semibold text-center hover:text-white">
             
             <NuxtLink 
-              to="/store/DRESSES/" class="duration-300 hover:bg-black   py-2 border border-gray-100">
+              to="/stores/DRESSES/" class="duration-300 hover:bg-black   py-2 border border-gray-100">
               Dresses
             </NuxtLink>
             
             <NuxtLink 
-              to="/store/SKIRTS/" 
+              to="/stores/SKIRTS/" 
               class="duration-300 hover:bg-black   py-2 border border-gray-100">
               Skirts
             </NuxtLink>
             
             <NuxtLink  
-              to="/store/BLOUSES/"     class="duration-300 hover:bg-black   py-2 border border-gray-100">
+              to="/stores/BLOUSES/"     class="duration-300 hover:bg-black   py-2 border border-gray-100">
               Blouses
             </NuxtLink>
             
             <NuxtLink 
-              to="/store/JUMPSUITS-&-ROMPERS/" class="duration-300 hover:bg-black   py-2 border border-gray-100">
+              to="/stores/JUMPSUITS & ROMPERS/" class="duration-300 hover:bg-black   py-2 border border-gray-100">
               Jumsuits & Rompers
             </NuxtLink>
             
             <NuxtLink 
-              to="/store/PANTS-&-SHORTS/" class="duration-300 hover:bg-black   py-2 border border-gray-100">
+              to="/stores/PANTS & SHORTS/" class="duration-300 hover:bg-black   py-2 border border-gray-100">
               Pants & Shorts
             </NuxtLink>
             
             <NuxtLink 
-              to="/store/TEE-SHIRTS/" class="duration-300 hover:bg-black   py-2 border border-gray-100">
+              to="/stores/TEE SHIRTS/" class="duration-300 hover:bg-black   py-2 border border-gray-100">
               Tee Shirts
             </NuxtLink>
 

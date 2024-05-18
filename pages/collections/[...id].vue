@@ -29,12 +29,13 @@ onMounted(async () => {
 
 <template>
   <div>
-  
     <CustomPage 
     page="Collections"
     :category="category" 
     :endpointid="endpointid" 
-    :type="type"/>
+    :type="type"
+    catpath=""
+    order=""/>
 
   </div>
 </template>

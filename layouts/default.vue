@@ -9,6 +9,7 @@
 
     <nuxt-page/>
 
+    <igbanner/>
     <page-footer/>
 
   

@@ -122,43 +122,64 @@ console.log(selectedCategory.value)
 </script>
 
 <template>
-  <nav :class="[`px-3 py-4 hidden lg:block bg-white sticky top-0 left-0 z-40 border-b-[1px] border-gray-100`, isScrolled ? 'shadow-md' : ' shadow-none']">
+  <nav :class="[`px-3 py-4 hidden lg:block bg-white sticky top-0 left-0 z-30 border-b-[1px] border-gray-100`, isScrolled ? 'shadow-md' : ' shadow-none']">
 
     <div class="grid grid-cols-5 items-center">
 
       <!--Logo-->
-      <div class="col-start-1 col-end-3">
+      <div class="col-start-1 col-end-2">
 
-        <NuxtLink to="/">
-          <img alt="site-logo" class="h-12" src="../public/vectors/brand-logo.svg">
+        <NuxtLink 
+        to="/">
+
+          <img 
+          alt="site-logo" 
+          class="h-12" 
+          src="../public/vectors/brand-logo.svg">
+
         </NuxtLink>
 
       </div>
 
       <!--Category Section-->
-      <div class="col-start-3 col-end-6">
+      <div class="flex col-span-4 col-end-6 justify-end">
 
-        <ul class="flex flex-row text-xs font-bold space-x-3 items-center text-center">
+        <ul class="flex flex-row text-xs font-bold space-x-4 items-center text-center">
 
           <li>
-            <NuxtLink to="/">HOME</NuxtLink>
+            <NuxtLink 
+            to="/">
+              HOME
+            </NuxtLink>
+
           </li>
 
           <li>
-            <NuxtLink to="/collections/new-arrivals/">NEW ARRIVALS</NuxtLink>
+            <NuxtLink 
+              to="/collections/new-arrivals/">
+              NEW ARRIVALS
+
+            </NuxtLink>
+
           </li>
 
           <Navbarcard
+            class="relative"
             v-for="category in variables.categories"
             :key="category.id"
             :category="category"
-            @mouseenter="toggleDropdown(category)"
-            @mouseleave="toggleDropdownOff"
-            
-          />
+            :selectedCategory="selectedCategory">
+
+          </Navbarcard>
 
           <li>
-            <NuxtLink to="/collections/Offers/">SALE</NuxtLink>
+
+            <NuxtLink 
+              to="/collections/Offers/">
+              SALE
+
+            </NuxtLink>
+
           </li>
 
         </ul>
@@ -166,7 +187,6 @@ console.log(selectedCategory.value)
       </div>
     </div>
 
-    <Dropdown v-if="isHoveredOn" :selectedCategory="selectedCategory" />
 
 
     

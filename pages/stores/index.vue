@@ -6,11 +6,11 @@
     
     <div>
         <CustomPage 
-            page="Collections"
-            category="New Arrivals" 
+            page="Stores"
+            category="Dresses" 
             endpointid="endpointid" 
-            type="new_arrivals"
-            catpath=""
+            type=""
+            catpath="SHOP NOW, DRESSES"
             order=""/>
     </div>
 

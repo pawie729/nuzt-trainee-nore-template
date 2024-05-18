@@ -1,17 +1,30 @@
 <script setup lang="ts">
 
+
+type Product = {
+  id: number;
+  sku: string;
+  PRICE: number;
+  DISCOUNT?: number;
+  master_title: string;
+  img: string;
+  img2: string;
+};
+
 const props = defineProps<{
   page: string;
   category: string;
   endpointid: string;
   type: string;
+  catpath: string;
+  order: String;
   
 }>();
 
 
+const products = ref<Product[]>([]);
 
-
-const products = ref<any[]>([]);
+const order = ref(props.order || 'NEWEST');
 
 const fetchProducts = async () => {
 
@@ -25,12 +38,13 @@ const fetchProducts = async () => {
       body: JSON.stringify({
         p: 1,
         size: 24,
-        order: "NEWEST",
+        order: order.value,
         maxprice: 1000000,
         minprice: 0,
         brand: "",
         is_master: true,
-        type: props.type,
+        type: props.type || '',
+        cat_path: props.catpath || '',
       }),
 
     });
@@ -59,6 +73,7 @@ const fetchProducts = async () => {
 };
 
 onMounted(fetchProducts);
+watch(() => [props.type, props.catpath, order.value], fetchProducts);
 
 
 const isFilterOn = ref(false);
@@ -95,13 +110,13 @@ const toggleFilter = () => {
 
         <div class="flex flex-row mt-6 lg:mt-0 items-center space-x-3 ">
 
-          <div class="outline-none focus:outline-none bg-white px-3 rounded-sm duration-300 flex border-[1px]">
+          <div class="outline-none focus:outline-none bg-white px-3  duration-300 flex border-[1px]">
 
-            <select class="h-full outline-none py-3">
-              <option value="newest">Newest</option>
-              <option value="popularity">Popularity</option>
-              <option value="price_low_high">Price, low to high</option>
-              <option value="price_high_low">Price, high to low</option>
+            <select class="flex h-full outline-none p-3 gap-2" v-model="order">
+              <option value="NEWEST">Newest</option>
+              <option value="POPULARITY">Popularity</option>
+              <option value="PRICE_LOW_TO_HIGH">Price, low to high</option>
+              <option value="PRICE_HIGH_TO_LOW">Price, high to low</option>
               
             </select>
 
@@ -126,7 +141,7 @@ const toggleFilter = () => {
             :src="product.img"
             :name="product.master_title"
             :price="`LKR ${product.PRICE}.00`"
-            :discount="props.type === 'hot_offer' && product.DISCOUNT ? `LKR ${(product.PRICE - product.DISCOUNT).toFixed(2)}.00` : ''"
+            :discount="props.catpath === '' && product.DISCOUNT ? `LKR ${(product.PRICE - product.DISCOUNT).toFixed(2)}.00` : ''"
             :instl="`LKR ${(product.PRICE/3).toFixed(2)} x 3 with`" />
 
 

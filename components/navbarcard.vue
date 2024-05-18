@@ -11,14 +11,39 @@ const props = defineProps<{
     order_by: number;
     link: string;
   };
+  selectedCategory: any;
 }>();
+
+const categoryLink = computed(() => {
+  return `/stores/${props.category.name}`;
+});
+
 
 </script>
 
 <template>
-  <NuxtLink :to="category.link" class="flex">
-    <p>{{ category.name }}</p>
-  </NuxtLink>
+  <div class="fixed inset-0 flex items-center  z-30">
+    
+
+  <div class="flex space-x-1">
+    <NuxtLink :to="categoryLink">
+      <p>{{ category.name }}</p>
+    </NuxtLink>
+
+    <img 
+    @mouseenter="$emit('mouseenter')" @mouseleave="$emit('mouseleave')"
+    class="w-3 hover:w-4 hover:translate-y-3 -rotate-90 hover:-translate-x-1/2 duration-300 hover:rotate-0"
+    src="/public/vectors/down-short-arrow-icon.svg">
+
+  </div>
+
+  <Dropdown
+    v-if="props.selectedCategory && props.selectedCategory.id === props.category.id"
+    :selectedCategory="props.selectedCategory"
+    :childCategories="props.category.children"
+  />
+</div>
+
 </template>
 
 <style scoped>

@@ -8,6 +8,8 @@ useSeoMeta({
 
 <template>
   <div>
+    
+    <Splash/>
     <Wallpaper/>
     <ProductsSection title="NEW ARRIVALS" directedLink="new_arrivals"/>
     <ProductsSection title="BEST OUT SELLERS" directedLink="trends"/>
