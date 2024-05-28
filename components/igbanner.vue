@@ -25,9 +25,16 @@
           <a href="https://www.instagram.com/norareedfashion/" 
           class="px-12 py-4 text-white text-xs font-semibold bg-black"> Follow Us </a>
 
-          <p class="text-xs font-semibold mt-10 max-w-sm leading-6 mx-auto text-center">Upload your favorite outfit on Instagram with #NORAREED for a chance to be featured! 
-            <NuxtLink to="/" 
-            class=" underline text-blue-600">.Terms & Conditions</NuxtLink>
+          <p class="text-xs font-semibold mt-10 max-w-sm leading-6 mx-auto text-center">
+            
+            Upload your favorite outfit on Instagram with #NORAREED for a chance to be featured! 
+
+            <NuxtLink 
+            to="/" 
+            class=" underline text-blue-600">
+              lTerms & Conditions
+            </NuxtLink>
+
           applied.</p>
 
         </div>
@@ -100,11 +107,15 @@
 
           <p class="text-xl lg:text-3xl font-bold mb-6">SHOP THE 'GRAM</p>
 
-          <a href="https://www.instagram.com/norareedfashion/" 
-          class="px-12 py-4 text-white text-xs font-semibold bg-black"> Follow Us </a>
+          <NuxtLink to="https://www.instagram.com/norareedfashion/" target="_blank" rel="noopener">
+              <span 
+              class="px-12 py-4 text-white text-xs font-semibold bg-black"> 
+                Follow Us 
+              </span>
+          </NuxtLink>
 
           <p class="text-xs font-semibold mt-10 max-w-sm leading-6 mx-auto text-center">Upload your favorite outfit on Instagram with #NORAREED for a chance to be featured! 
-            <NuxtLink to="/" 
+            <NuxtLink to="/information/terms_and_conditions" 
             class=" underline text-blue-600">.Terms & Conditions</NuxtLink>
           applied.</p>
 

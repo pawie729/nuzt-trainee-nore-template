@@ -5,6 +5,7 @@
 <template>
     
     <div>
+        <Splash/>
         <CustomPage 
             page="Collections"
             category="New Arrivals" 

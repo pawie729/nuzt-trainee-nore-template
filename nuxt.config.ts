@@ -8,9 +8,10 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  modules: [
-    '@pinia/nuxt',
-  ],
+  ui:{
+    icons: "all",
+  },
+  modules: ['@pinia/nuxt', "@nuxt/ui"],
   app: {
     head: {
       charset: 'utf-8',

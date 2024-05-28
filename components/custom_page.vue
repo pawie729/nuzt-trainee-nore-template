@@ -25,6 +25,8 @@ const props = defineProps<{
 const products = ref<Product[]>([]);
 
 const order = ref(props.order || 'NEWEST');
+const currentPage = ref(1);
+const totalPages = computed(() => Math.ceil(products.value.length / 24));
 
 const fetchProducts = async () => {
 
@@ -36,7 +38,7 @@ const fetchProducts = async () => {
         'Accept': 'application/json',
       },
       body: JSON.stringify({
-        p: 1,
+        p: currentPage.value,
         size: 24,
         order: order.value,
         maxprice: 1000000,
@@ -59,10 +61,12 @@ const fetchProducts = async () => {
         return acc;
       }, []);
 
+      const img2Url = imgUrl.length > 1 ? imgUrl[1] : imgUrl; 
       return {
         ...product,
         name: product.master_title,
         img: imgUrl.length > 0 ? imgUrl[0] : '',
+        img2: img2Url,
       };
     });
 
@@ -72,8 +76,11 @@ const fetchProducts = async () => {
   return products;
 };
 
+
+
+
 onMounted(fetchProducts);
-watch(() => [props.type, props.catpath, order.value], fetchProducts);
+watch(() => [props.type, props.catpath, order.value, currentPage.value], fetchProducts);
 
 
 const isFilterOn = ref(false);
@@ -82,11 +89,26 @@ const toggleFilter = () => {
   isFilterOn.value = !isFilterOn.value;
 };
 
+const nextPage = () => {
+  currentPage.value++;
+  console.log('Current Page:', currentPage.value);
+};
+
+const prevPage = () => {
+  currentPage.value--;
+};
+
+const goToLastPage = () => {
+  if (currentPage.value < totalPages.value) {
+    currentPage.value = totalPages.value;
+    fetchProducts();
+  }
+};
 
 
 </script>
 
-<template>
+<template v-for="page in totalPages">
   <div class="bg-white">
 
     <nav class="px-3 py-5 border-b-[1px] border-gray-100">
@@ -134,39 +156,69 @@ const toggleFilter = () => {
 
       <section>
 
-        <div class="container mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 lg:gap-6">
+        <div class="container mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 lg:gap-6"
+        
+        >
           <Productcard 
             v-for="product in products"
             :key="product.id"
-            :src="product.img"
+            :id="product.id"
+            :masterTitle="product.master_title"
+            :src2="product.img2"
+            :src1="product.img"
             :name="product.master_title"
             :price="`LKR ${product.PRICE}.00`"
-            :discount="props.catpath === '' && product.DISCOUNT ? `LKR ${(product.PRICE - product.DISCOUNT).toFixed(2)}.00` : ''"
-            :instl="`LKR ${(product.PRICE/3).toFixed(2)} x 3 with`" />
+            
+            :newprice="props.type === 'hot_offer' && product.DISCOUNT ? `LKR ${(product.PRICE - product.DISCOUNT).toFixed(2)}.00` : ''"
+
+            :oldprice="product.DISCOUNT ? `LKR ${product.PRICE}.00` : ''"
+
+            :instl="`LKR ${(product.PRICE/3).toFixed(2)} x 3 with`"
+
+            :percentage="props.type === 'hot_offer' && product.DISCOUNT ? `-${(product.DISCOUNT/product.PRICE * 100).toFixed(0) }%` : ''"
+            
+            />
 
 
 
         </div>
 
+
+        <!-- pagination -->
         <div class="flex items-center justify-center mt-12">
 
           <div class="flex items-center space-x-2">
-            <button>
-              <img
+            <button
+            @click="currentPage=1" :disabled="currentPage <= 1">
+              <img 
               alt="previous-icon"
               class="transform rotate-180"
               src="/public/vectors/previous-icon.svg">
             </button>
 
-            <button class=" aspect-square w-8 border-[1px] bg-black text-white duration-300"> 
-              1
+            <button
+            @click="prevPage"
+            :disabled="currentPage <= 1"
+            v-show="currentPage >=2" class="aspect-square py-1 w-8 border-[1px] bg-white 
+            hover:bg-black hover:text-white duration-300
+            cursor-pointer focus:cursor-auto">
+              {{ currentPage - 1 }}
             </button>
 
-            <button class="aspect-square w-8 border-[1px] bg-white hover:bg-black hover:text-white duration-300">
-              2
+            <button class="aspect-square py-1 w-8 border-[1px] bg-black text-white duration-300"> 
+              {{ currentPage }}
             </button>
 
-            <button>
+            <button 
+            @click="nextPage"
+            class="aspect-square py-1 w-8 border-[1px] bg-white 
+            hover:bg-black hover:text-white duration-300
+            cursor-pointer focus:cursor-auto">
+              {{ currentPage + 1 }}
+            </button>
+
+            <button
+            @click="goToLastPage">
               <img
               alt="next-icon"
               src="/public/vectors/next-icon.svg">
@@ -195,8 +247,6 @@ const toggleFilter = () => {
 </template>
 
 <style scoped>
-
-
 
 .slide-right-enter-active, .slide-right-leave-active {
   transition: transform 0.5s ease-in-out;

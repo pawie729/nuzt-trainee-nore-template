@@ -168,7 +168,11 @@ console.log(selectedCategory.value)
             v-for="category in variables.categories"
             :key="category.id"
             :category="category"
-            :selectedCategory="selectedCategory">
+            :selectedCategory="selectedCategory"
+            desktop>
+
+
+            
 
           </Navbarcard>
 

@@ -18,6 +18,9 @@ onMounted(async () => {
     } else if (endpointid.value === 'Offers') {
       category.value = 'Offers';
       type.value = 'hot_offer'; 
+    } else if (endpointid.value === 'trending'){
+      category.value = 'Trending';
+      type.value = 'trends';
     }
   } catch (error) {
     console.error('Error getting route path:', error);
@@ -29,6 +32,7 @@ onMounted(async () => {
 
 <template>
   <div>
+    <Splash/>
     <CustomPage 
     page="Collections"
     :category="category" 

@@ -43,12 +43,14 @@ console.log(endpointid.value)
 
 <template>
   <div>
+    <Splash/>
     <CustomPage 
     page="Stores"
     :category="category" 
     :endpointid="endpointid" 
     type=""
-    :catpath="catpath"/>
+    :catpath="catpath"
+    order=""/>
 
   </div>
 </template>

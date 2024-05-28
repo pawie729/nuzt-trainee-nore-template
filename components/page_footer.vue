@@ -42,15 +42,25 @@
             <p class="mb-6 font-bold">FOLLOW US ON</p>
 
             <div class="font-semibold flex space-x-2">
-              <img alt="fb-icon"
+              <NuxtLink to="https://web.facebook.com/NoraReedClothing/" target="_blank" rel="noopener">
+                <img alt="fb-icon"
               class="w-8 h-8"
               src="../public/vectors/fb-icon.svg">
-              <img alt="ig-icon"
+              </NuxtLink>
+              
+              <NuxtLink to="https://www.instagram.com/norareedfashion/" target="_blank" rel="noopener">
+                <img alt="ig-icon"
               class="w-8 h-8"
               src="../public/vectors/ig-icon.svg">
-              <img alt="wa-icon"
+              </NuxtLink>
+              
+
+              <NuxtLink to="https://api.whatsapp.com/send?phone=94760971358" target="_blank" rel="noopener">
+                <img alt="wa-icon"
               class="w-8 h-8"
               src="../public/vectors/wa-icon.svg">
+              </NuxtLink>
+              
 
             </div>
 

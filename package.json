@@ -10,7 +10,9 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@iconify/json": "^2.2.212",
     "@jambonn/vue-concise-carousel": "^2.1.31",
+    "@nuxt/ui": "^2.16.0",
     "@pinia/nuxt": "^0.5.1",
     "nuxt": "^3.11.2",
     "pinia": "^2.1.7",
